@@ -1,36 +1,32 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Sports 1 Hindi HD</title>
+
+  <!-- Shaka Player CSS & JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/controls.min.css" crossorigin="anonymous">
-  <script src="https://cdn.tailwindcss.com"></script> 
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     html, body {
       background: #fff;
       height: 100%;
       width: 100%;
-      
       font-family: system-ui, -apple-system, sans-serif;
     }
-    .shaka-video-container {
-      width: 100%;
-      height: 100%;
-      margin-top: 10px;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-    video {
-      width: 100%;
-      height: 100%;
-      padding: 5px;
-      background: #000;
-      
-    }
+
+    /* Hide spinner */
     .shaka-spinner-container,
     .shaka-spinner,
     .shaka-spinner-svg {
@@ -38,22 +34,46 @@
       visibility: hidden !important;
       opacity: 0 !important;
     }
+
+    /* Responsive video container for desktop */
+    .shaka-video-container {
+      width: 100%;
+      max-width: 100%;
+      margin: auto;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 768px) {
+      .shaka-video-container {
+        max-width: 800px; /* Shrinks container on desktop */
+      }
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      padding: 0;
+      background: #000;
+      border-radius: 6px;
+    }
   </style>
 </head>
-
-  
 <body>
 
   <!-- Header -->
-    <header class="p-4 bg-blue-900 text-white text-center text-2xl font-bold">
-       <a href="https://cinearena.live"> <img src="cineheader.png" class="h-10 md:h-10 lg:h-10 mx-auto"></a>
-    </header>
+  <header class="p-4 bg-blue-900 text-white text-center">
+    <a href="https://cinearena.live">
+      <img src="cineheader.png" class="h-10 mx-auto" alt="Cine Arena Header">
+    </a>
+  </header>
 
-  
-  <div class="shaka-video-container" data-shaka-player>
-  <video autoplay playsinline preload="metadata" poster="/weiptv.webp"></video>
+  <!-- Video Player Container -->
+  <div class="shaka-video-container w-full px-2 md:max-w-3xl md:mx-auto mt-4" data-shaka-player>
+    <video autoplay playsinline preload="metadata" poster="/weiptv.webp" class="w-full rounded-md"></video>
   </div>
 
+  <!-- Shaka Player Script -->
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       shaka.polyfill.installAll();
@@ -246,19 +266,21 @@
     });
   </script>
 
-  <!-- extra count+Telegram-->
-   <center>
+  <!-- User Counter -->
+  <center class="mt-4">
     <script src="//widget.supercounters.com/ssl/online_t.js"></script>
     <script>sc_online_t(1707487,"Users Online","170ddb");</script>
     <noscript><a href="https://www.supercounters.com/">supercounters.com</a></noscript>
   </center>
 
-  <div style="background-color: #0074d9; width:100%; text-align: center; padding: 10px;">
+  <!-- Telegram Button -->
+  <div class="bg-blue-700 text-white text-center py-3 mt-4">
     <a href="https://t.me/cric_stream" target="_blank">
-      <button id="joinTelegramButton">Join Telegram</button>
+      <button id="joinTelegramButton" class="bg-white text-blue-700 px-4 py-2 rounded font-semibold shadow hover:bg-gray-200 transition">
+        Join Telegram
+      </button>
     </a>
   </div>
 
-  
 </body>
 </html>
