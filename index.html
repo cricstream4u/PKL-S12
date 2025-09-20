@@ -1,56 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Sports Hindi </title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-    <style>
-        /* Apply black background and white text for contrast */
-        body {
-            margin: 0;
-            background-color: black; /* Set background to black */
-            color: white; /* Optional: Set text color to white for better readability */
-            font-family: Arial, sans-serif; /* Optional: Add a font style */
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<link rel="icon" href="faviconimg.jpeg" type="image/gif" sizes="16x16">  
+<meta charset="UTF-8">  
+<title>Streaming by Asif Ansari </title>  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>  
+
+    
+
+<script>
+if (confirm("Join Our Telegram Channel To Watch Live Match")) {
+    window.location.href = "https://t.me/cine_arena";
+  }
+</script>
+       
+<style>   
+   body {   
+             margin: 0px   
+        }   
+      
+        .jwplayer {   
+             position: absolute !important   
+        }   
+      
+        .jwplayer.jw-flag-aspect-mode {   
+             min-height: 100%;   
+             max-height: 100%   
+        }   
+  </style>  
+</head>  
+<body>  
+<div id="player"></div>
+
+<script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+<script>
+jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+
+// Patch XHR to inject token into segments
+(function() {
+    const origOpen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method, url) {
+        if (url && !url.includes("__hdnea__")) {
+            url += (url.includes('?') ? '&' : '?') + "__hdnea=st=1758369634~exp=1758456034~acl=/*~hmac=a4c102e78416b45f007f0e41df2c3a5097948e8fe03e0d6c33d618a6569f71d0";
         }
-    </style>
-</head>
-<body>
-   <!-- Video Player Section -->
-    <div class="player-container">
-        <div style="padding:56.25% 0 0 0;position:relative;">
-            <iframe 
-                id="contentFrame" 
-                sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" 
-                frameborder="0" 
-                gesture="media" 
-                allow="encrypted-media" 
-                allowfullscreen="true" 
-                scrolling="no" 
-                src="https://techy-kuldeep-live-eta5.vercel.app/STARSPORTS2HD.html" 
-                style="position:absolute;top:0;left:0;width:100%;height:100%;">
-            </iframe>
-        </div>
-    </div>
-    <script>
-        // Adjust iframe height dynamically based on the window height
-        function adjustIframeHeight() {
-            const iframe = document.getElementById('contentFrame');
-            if (iframe) {
-                const windowHeight = window.innerHeight;
-                iframe.style.height = windowHeight + 'px'; // Set iframe height equal to window height
+        return origOpen.apply(this, arguments);
+    };
+})();
+
+jwplayer("player").setup({
+    playlist: [{
+        file: "https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Sports_HD2_BTS/output/index.mpd?__hdnea=st=1758369634~exp=1758456034~acl=/*~hmac=a4c102e78416b45f007f0e41df2c3a5097948e8fe03e0d6c33d618a6569f71d0",
+        drm: {
+            clearkey: {
+                keyId: "9457eb90129456fa8ea95e10ba4ac51e",
+                key: "e620a970cea474c491ac78ae71a4d764",
+                robustness: {
+                    video: "SW_SECURE_DECODE",
+                    audio: "SW_SECURE_DECODE"
+                }
             }
         }
-
-        // Call function on page load and window resize
-        window.onload = adjustIframeHeight;
-        window.onresize = adjustIframeHeight;
-
-        // Redirect logic
-        if (confirm("Join For More Links")) { 
-            window.location.href = "https://t.me/cine_arena"; 
-        }
-    </script>
-</body>
-</html>
+    }],
+    width: "100%",
+    height: "100%",
+    autostart: true,
+    mute: false,
+    primary: "html5",
+    hlshtml: true,
+    aspectratio: "16:9",
+    stretching: "exactfit",
+    playbackRateControls: true,
+    controls: true,
+     skin: { name: "default", active: "red", inactive: "white", background: "black" },
+}).on("error", e => {
+    console.error("Player error:", e);
+    const msg = document.createElement('div');
+    msg.id = "message";
+    msg.innerText = "Player error: " + (e.message || "Unknown error");
+    document.body.appendChild(msg);
+});
+</script>
